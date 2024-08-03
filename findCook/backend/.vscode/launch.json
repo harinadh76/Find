@@ -8,6 +8,7 @@
             "name": "DEBUG",
             "outDir": "${workspaceRoot}/dist",
             // "preLaunchTask": "compile",
+            "command": "tsc -b",
             "program": "${workspaceRoot}/src/index.ts",
             "request": "launch",
             "runtimeArgs": [

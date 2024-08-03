@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/auth', loginRouter);
-app.use('/auth', loginRouter);
+// app.use('/auth', loginRouter);
 
 
 app.listen(process.env.PORT, () => {
