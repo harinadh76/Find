@@ -10,13 +10,13 @@ const _layout = () => {
                 <Stack.Screen
                     name="login"
                     options={{
-                        headerShown: false,
+                        headerShown: true,
                     }}
                 />
                 <Stack.Screen
                     name="register"
                     options={{
-                        headerShown: false,
+                        headerShown: true,
                     }}
                 />
             </Stack>

@@ -1,35 +1,19 @@
-// import { View, Text } from 'react-native'
-// import React from 'react'
-// import { Link } from 'expo-router'
-
-// const register = () => {
-//     return (
-//         <View>
-//             <Text>register</Text>
-//             <Link href='/home'>Home</Link>
-//         </View>
-//     )
-// }
-
-// export default register
-
-
-
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { Link } from 'expo-router'
 import axios from 'axios';
 import { API_URL } from '../../environments';
+import { useNavigation } from '@react-navigation/native';
 
 const register = () => {
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleRegister = () => {
-        // Implement register logic here
         if (!name || !email || !password || !confirmPassword) {
             Alert.alert('Error', 'Please fill in all fields');
             return;
@@ -38,7 +22,6 @@ const register = () => {
             Alert.alert('Error', 'Passwords do not match');
             return;
         }
-        console.log(API_URL)
         axios.post(API_URL + '/auth/register', { name, email, password }).then((res) => {
             console.log(res);
         }).catch((err) => {
