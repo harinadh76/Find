@@ -39,4 +39,10 @@ router.get('/profile', authMiddleware, async (req: any, res) => {
     return res.json({ user, message: 'Successfully fetched User' });
 })
 
+router.post('/update', authMiddleware, async (req: any, res) => {
+    const userId = req.user.userId;
+    const user = await UserModel.findByIdAndUpdate({ userId }, req.body);
+    return res.json({ user, message: 'Successfully updated User' });
+});
+
 export default router;
