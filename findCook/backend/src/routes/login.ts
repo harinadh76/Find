@@ -2,6 +2,7 @@ import { Request, Router } from "express";
 import { UserModel } from "../models/UserModel";
 import jwt from 'jsonwebtoken';
 import { authMiddleware } from "../middleware";
+import { Types } from "mongoose";
 const router = Router();
 
 
@@ -40,8 +41,8 @@ router.get('/profile', authMiddleware, async (req: any, res) => {
 })
 
 router.post('/update', authMiddleware, async (req: any, res) => {
-    const userId = req.user.userId;
-    const user = await UserModel.findByIdAndUpdate({ userId }, req.body);
+    const userId = new Types.ObjectId(req.user.userId);
+    const user = await UserModel.findByIdAndUpdate({ _id: userId }, req.body);
     return res.json({ user, message: 'Successfully updated User' });
 });
 

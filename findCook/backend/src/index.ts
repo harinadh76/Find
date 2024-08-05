@@ -1,5 +1,6 @@
 import express from 'express';
 import loginRouter from './routes/login';
+import cook from './routes/cook';
 import cors from 'cors';
 import 'dotenv/config'
 require('./db')
@@ -14,6 +15,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/auth', loginRouter);
+app.use('/cook', cook);
 // app.use('/auth', loginRouter);
 
 

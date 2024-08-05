@@ -17,7 +17,7 @@ const profile = () => {
         city: '',
         gender: '',
     });
-
+    const [token, setToken] = useState('');
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(profile.gender);
     const [items, setItems] = useState([
@@ -34,7 +34,8 @@ const profile = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(API_URL + '/auth/update', profile).then((res) => {
+        console.log(profile);
+        axios.post(API_URL + '/auth/update', profile, { headers: { Authorization: token } }).then((res) => {
             console.log(res);
         }).catch((err) => {
             console.log(err);
@@ -47,6 +48,7 @@ const profile = () => {
                 router.push('/');
             }
             if (token) {
+                setToken(token);
                 axios.get(API_URL + '/auth/profile', {
                     headers: {
                         Authorization: token
@@ -110,9 +112,9 @@ const profile = () => {
                 value={value}
                 items={items}
                 setOpen={setOpen}
-                setValue={(value) => {
-                    setValue(value);
-                    handleChange('gender', value);
+                setValue={(selectedValue) => {
+                    setValue(selectedValue);
+                    handleChange('gender', selectedValue);
                 }}
                 setItems={setItems}
                 style={styles.dropdown}
