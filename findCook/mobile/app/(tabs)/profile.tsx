@@ -42,6 +42,12 @@ const profile = () => {
         });
     };
 
+    const handleLogout = () => {
+        AsyncStorage.removeItem('token').then(() => {
+            router.push('/');
+        });
+    };
+
     useEffect(() => {
         AsyncStorage.getItem('token').then((token) => {
             if (!token) {
@@ -122,6 +128,7 @@ const profile = () => {
             />
 
             <Button title="Update Profile" onPress={handleSubmit} color="#4CAF50" />
+            <Button title="Logout" onPress={handleLogout} color="red" />
         </View>
     )
 }
