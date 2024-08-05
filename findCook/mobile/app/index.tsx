@@ -7,9 +7,9 @@ export default function Index() {
     const [token, setToken] = useState("");
     useEffect(() => {
         AsyncStorage.getItem("token").then((token) => {
-            if (!token) {
-                router.push("/");
-            }
+            // if (!token) {
+            //     router.push("/");
+            // }
             if (token) {
                 setToken(token);
                 router.push("/home");
