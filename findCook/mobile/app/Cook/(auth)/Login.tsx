@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { Link, router } from 'expo-router'
-import { API_URL } from '../../environments';
+import { API_URL } from '../../../environments';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const login = () => {
+const Login = () => {
     useEffect(() => {
         AsyncStorage.getItem('token').then((token) => {
             if (token) {
@@ -18,12 +18,12 @@ const login = () => {
     const [password, setPassword] = useState('');
 
     const handleLogin = async () => {
-        await axios.post(API_URL + '/auth/login', { email, password }).then((res) => {
-            AsyncStorage.setItem('token', res.data.token);
-            router.push('/home');
-        }).catch((err) => {
-            console.log(err);
-        });
+        // await axios.post(API_URL + '/auth/login', { email, password }).then((res) => {
+        //     AsyncStorage.setItem('token', res.data.token);
+        //     router.push('/home');
+        // }).catch((err) => {
+        //     console.log(err);
+        // });
     };
 
     return (
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default login;
+export default Login;

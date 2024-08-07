@@ -8,17 +8,16 @@ const _layout = () => {
         <>
             <Stack>
                 <Stack.Screen
-                    name="login"
+                    name="Login"
                     options={{
-                        headerShown: true,
+                        headerShown: false,
                         title: 'Login'
                     }}
                 />
                 <Stack.Screen
-                    name="register"
+                    name="Register"
                     options={{
-                        headerShown: true,
-                        title: 'Register'
+                        headerShown: false,
                     }}
                 />
             </Stack>

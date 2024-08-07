@@ -9,5 +9,8 @@ router.get('/', (req, res) => {
     res.send('Cooking');
 })
 
+router.post('/', async (req, res) => {
+
+})
 
 export default router;

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 export interface IUser {
     name: string;
@@ -8,6 +8,7 @@ export interface IUser {
     address?: string;
     city?: string;
     gender?: string;
+    bookings?: string[];
 }
 
 const UserSchema = new mongoose.Schema<IUser>({
@@ -18,6 +19,7 @@ const UserSchema = new mongoose.Schema<IUser>({
     address: { type: String },
     city: { type: String },
     gender: { type: String },
+    bookings: [{ type: Types.ObjectId, ref: 'Cook' }]
 });
 
 export const UserModel = mongoose.model<IUser>('User', UserSchema); 
