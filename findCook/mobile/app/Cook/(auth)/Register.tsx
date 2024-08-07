@@ -22,11 +22,11 @@ const Register = () => {
             Alert.alert('Error', 'Passwords do not match');
             return;
         }
-        // axios.post(API_URL + '/auth/register', { name, email, password }).then((res) => {
-        //     console.log(res);
-        // }).catch((err) => {
-        //     console.log(err);
-        // });
+        axios.post(API_URL + '/auth/cookregister', { name, email, password }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
     };
 
     return (

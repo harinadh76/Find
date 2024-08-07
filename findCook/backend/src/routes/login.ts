@@ -3,6 +3,7 @@ import { UserModel } from "../models/UserModel";
 import jwt from 'jsonwebtoken';
 import { authMiddleware } from "../middleware";
 import { Types } from "mongoose";
+import { CookModel } from "../models/CookModel";
 const router = Router();
 
 
@@ -31,6 +32,36 @@ router.post('/register', async (req, res) => {
     }
     const user = await UserModel.create({ email, password, name });
     return res.status(200).json({ message: 'User created successfully' });
+})
+
+router.post('/cooklogin', async (req, res) => {
+    const { email, password } = req.body;
+    const user = await CookModel.findOne({ email });
+    if (user) {
+        if (user.password == password) {
+            let payload = {
+                userId: user._id.toString(),
+            }
+            const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN });
+            return res.status(200).json({ token, message: "Login SuccessFul" })
+        } else {
+            return res.status(200).json({ message: 'Wrong Password' })
+        }
+    }
+})
+
+router.post('/cookregister', async (req, res) => {
+    const { email, password, name } = req.body;
+    const exists = await CookModel.find({ email });
+    if (exists.length > 0) {
+        return res.status(400).json({ message: 'Cook already exists' });
+    }
+    const userExists = await UserModel.find({ email });
+    if (userExists.length > 0) {
+        return res.status(400).json({ message: 'An User with this email already exists' });
+    }
+    const user = await CookModel.create({ email, password, name });
+    return res.status(200).json({ message: 'Cook created successfully' });
 })
 
 router.get('/profile', authMiddleware, async (req: any, res) => {
