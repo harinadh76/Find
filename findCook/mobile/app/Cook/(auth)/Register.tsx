@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import axios from 'axios';
 import { API_URL } from '../../../environments';
 import { useNavigation } from '@react-navigation/native';
@@ -24,6 +24,7 @@ const Register = () => {
         }
         axios.post(API_URL + '/auth/cookregister', { name, email, password }).then((res) => {
             console.log(res);
+            router.push('/Cook/login');
         }).catch((err) => {
             console.log(err);
         });
