@@ -14,8 +14,7 @@ const LogOut = (props) => {
     }
     return (
         <View>
-            <Text>LogOut</Text>
-            <Button onPress={handleLogOut} title='LogOut' />
+            <Button onPress={handleLogOut} title='LogOut' color='red' />
         </View>
     )
 }
