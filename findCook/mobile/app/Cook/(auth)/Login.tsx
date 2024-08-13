@@ -20,11 +20,16 @@ const Login = () => {
     const handleLogin = async () => {
         await axios.post(API_URL + '/auth/cooklogin', { email, password }).then((res) => {
             AsyncStorage.setItem('token', res.data.token);
-            router.push('/home');
+            router.push('/Cook/home');
         }).catch((err) => {
             console.log(err);
         });
     };
+
+    const handleLogOut = async () => {
+        await AsyncStorage.removeItem('token');
+        router.push('/Cook/login');
+    }
 
     return (
         <View style={styles.container}>
