@@ -30,7 +30,6 @@ const index = () => {
                         Authorization: token
                     }
                 }).then((res) => {
-                    console.log(res);
                     if (res.data) {
                         setCook(res.data);
                     }
