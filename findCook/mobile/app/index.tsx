@@ -16,6 +16,12 @@ export default function Index() {
                 router.push("/home");
             }
         });
+        AsyncStorage.getItem('cookToken').then((cookToken) => {
+            if (cookToken) {
+                setToken(cookToken);
+                router.push('/Cook/home');
+            }
+        });
     }, []);
 
     return (

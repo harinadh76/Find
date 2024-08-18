@@ -8,9 +8,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = () => {
     useEffect(() => {
-        AsyncStorage.getItem('token').then((token) => {
+        AsyncStorage.getItem('cookToken').then((token) => {
             if (token) {
-                router.push('/home');
+                router.push('/Cook/home');
             }
         });
     })
@@ -19,7 +19,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         await axios.post(API_URL + '/auth/cooklogin', { email, password }).then((res) => {
-            AsyncStorage.setItem('token', res.data.token);
+            AsyncStorage.setItem('cookToken', res.data.token);
             router.push('/Cook/home');
         }).catch((err) => {
             console.log(err);
@@ -27,7 +27,7 @@ const Login = () => {
     };
 
     const handleLogOut = async () => {
-        await AsyncStorage.removeItem('token');
+        await AsyncStorage.removeItem('cookToken');
         router.push('/Cook/login');
     }
 
