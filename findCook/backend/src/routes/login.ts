@@ -20,6 +20,8 @@ router.post('/login', async (req, res) => {
         } else {
             return res.status(200).json({ message: 'Wrong Password' })
         }
+    } else {
+        return res.status(200).json({ message: 'User not found' })
     }
 })
 
