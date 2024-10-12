@@ -18,12 +18,18 @@ const login = () => {
     const [password, setPassword] = useState('');
 
     const handleLogin = async () => {
-        await axios.post(API_URL + '/auth/login', { email, password }).then((res) => {
-            AsyncStorage.setItem('token', res.data.token);
-            router.push('/home');
-        }).catch((err) => {
-            console.log(err);
-        });
+        await axios.post(API_URL + '/auth/login', { email, password },
+            {
+                headers: {
+                    Accept: 'application/json',
+                    'content-Type': 'application/json',
+                },
+            },).then((res) => {
+                AsyncStorage.setItem('token', res.data.token);
+                router.push('/home');
+            }).catch((err) => {
+                console.log(err);
+            });
     };
 
     return (
